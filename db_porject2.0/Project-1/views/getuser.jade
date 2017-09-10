@@ -1,0 +1,53 @@
+doctype html
+html
+  head
+    title TechBBS
+    link(href='http://localhost:3000/path/main.css' rel='stylesheet')
+    
+  body
+    div
+      #header  
+        p Technology BBS
+      .left
+        -var foo = nimaa
+        -foo = JSON.parse(foo)
+        -var name=foo[0]["author"]
+        -var level='Lv.'+foo[0]["level"]
+        -var status=foo[0]["status"]
+        -var userid=foo[0]["userid"]
+        -var messageurl='http://localhost:3000/getusermessage/?id='+userid;
+        p= name 
+        p= level
+        -if (status)
+          p steward
+        a(href="http://localhost:3000/path/changename.html")
+          button.changebutton change name
+        a(href="http://localhost:3000/path/changepass.html")
+          button.changebutton change password
+        a(href="http://localhost:3000/path/becomesteward.html")
+          button.changebutton become steward
+        a(href="http://localhost:3000/path/sendmessage.html")
+          button.changebutton send message
+        a(href=messageurl)
+          button.changebutton messages
+      .right
+        .posttable  
+          table(border=8,align="center",cellpadding="10px")
+            thead 
+              tr
+                th Topic
+                th Posttime
+            tbody
+              -length = foo.length
+              each elem in foo
+                tr 
+                  -var title=elem["title"]
+                  -var time=elem["time"]
+                  -var postid=elem["postid"]
+                  -var url='/getpost?id='+postid;
+                  td
+                    a(href = url)= title
+                  td= time
+              
+      #footer
+        p Yifan Zuo, Shen Chen, Leilei Chen

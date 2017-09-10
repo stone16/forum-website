@@ -1,0 +1,52 @@
+doctype html
+html
+  head
+    title TechBBS
+    link(href='http://localhost:3000/path/main.css' rel='stylesheet')
+    
+  body
+    div
+      #header  
+        p Technology BBS
+      .left
+        a(href="http://localhost:3000/path/posting.html")
+          button.postbutton Post
+        a(href="http://localhost:3000/path/settop.html")
+          button.postbutton SetTop
+        a(href="http://localhost:3000/path/canceltop.html")
+          button(style="margin-top:40px;font-size:22px;border-radius: 5px;width:120px;margin-left:auto;margin-right:auto;") CancelTop
+        a(href="http://localhost:3000/path/deletepost.html")
+          button.postbutton Delete
+        a(href="http://localhost:3000/path/recoverpost.html")
+          button(style="margin-top:40px;font-size:22px;border-radius: 5px;width:100px;margin-left:auto;margin-right:auto;") Recover
+      .right
+        .posttable  
+          table(border=8,align="center",cellpadding="10px")
+            thead 
+              tr
+                th postid
+                th Author
+                th Topic
+                th Posttime
+            tbody
+              -var foo = nimaa
+              -foo = JSON.parse(foo)
+              -length = foo.length
+              each elem in foo
+                tr 
+                  -var author=elem["author"]
+                  -var title=elem["title"]
+                  -var time=elem["time"]
+                  -var postid=elem["postid"]
+                  -var posturl='/getpost?id='+postid;
+                  -var userid=elem["userid"]
+                  -var userurl='/getuser?id='+userid;
+                  td= postid
+                  td
+                    a(href = userurl)= author
+                  td
+                    a(href = posturl)= title
+                  td= time
+              
+      #footer
+        p Yifan Zuo, Shen Chen, Leilei Chen

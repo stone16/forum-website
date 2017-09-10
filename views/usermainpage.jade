@@ -1,0 +1,63 @@
+doctype html
+html
+  head
+    title TechBBS
+    link(href='/main.css' rel='stylesheet')
+    
+  body
+    div
+      -var foo = allrows
+      -foo = JSON.parse(foo)
+      #header  
+        a(href="/login.html")
+          button.loginbutton log out
+        a(href="/getallpost")
+          button.loginbutton Mainpage
+        p Technology BBS
+      .left
+        -var presentusername = foo[0]["presentusername"]
+        -var presentuserlevel = 'Lv. '+foo[0]["presentuserlevel"]
+        p= presentusername
+        p= presentuserlevel
+        a(href="/changename.html")
+          button.changebutton change name
+        a(href="/changepass.html")
+          button.changebutton change password
+        a(href="/posting.html")
+          button.changebutton Post
+        a(href="/userselfpost")
+          button.changebutton My Posts
+        a(href="/userselfmessage")
+          button.changebutton My Messages
+        a(href="/friendrequest")
+          button.changebutton Friend Requests       
+        a(href="/userfriend")
+          button.changebutton Friends 
+        a(href="/applytosteward")
+          button.changebutton Apply Steward 
+      .right
+        .posttable  
+          table(border=8,align="center",cellpadding="10px")
+            thead 
+              tr
+                th Author
+                th Topic
+                th Posttime
+            tbody
+              each elem in foo
+                tr 
+                  -var author=elem["author"]
+                  -var title=elem["title"]
+                  -var time=elem["time"]
+                  -var postid=elem["postid"]
+                  -var posturl='/getpost?id='+postid;
+                  -var userid=elem["userid"]
+                  -var userurl='/getuser?id='+userid;
+                  td
+                    a(href = userurl)= author
+                  td
+                    a(href = posturl)= title
+                  td= time
+              
+      #footer
+        p Yifan Zuo, Shen Chen, Leilei Chen

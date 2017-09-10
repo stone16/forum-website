@@ -1,0 +1,72 @@
+doctype html
+html
+  head
+    title TechBBS
+    link(href='/main.css' rel='stylesheet')
+    
+  body
+    div
+      -var foo = allrows
+      -foo = JSON.parse(foo)
+      #header  
+        a(href="/login.html")
+          button.loginbutton log out
+        p Technology BBS
+      .left
+        -var presentusername = foo[0]["presentusername"]
+        p= presentusername
+        p Steward
+        a(href="/stewarduserpage")
+          button.changebutton All Users
+        a(href="/stewardmainpage")
+          button.changebutton All Posts
+
+      .right
+        .posttable  
+          table(border=8,align="center",cellpadding="10px")
+            thead 
+              tr
+                th Author
+                th Topic
+                th Posttime
+                th Valid?
+                th Operation
+                th isTop?
+                th Operation
+            tbody
+              each elem in foo
+                tr 
+                  -var author=elem["author"]
+                  -var title=elem["title"]
+                  -var time=elem["time"]
+                  -var postid=elem["postid"]
+                  -var getposturl='/getpost?id='+postid;
+                  -var deleteposturl='/stewarddeletepost?id='+postid;
+                  -var recoverposturl='/stewardrecoverpost?id='+postid;
+                  -var settopposturl='/stewardsettoppost?id='+postid;
+                  -var canceltopposturl='/stewardcanceltoppost?id='+postid;
+                  -var valid=elem["valid"]
+                  -var isTop=elem["isTop"]
+                  td= author
+                  td
+                    a(href = getposturl)= title
+                  td= time
+                  -if(valid)
+                    td True
+                    td
+                      a(href = deleteposturl) Delete                    
+                  -if(!valid)
+                    td False
+                    td
+                      a(href = recoverposturl) Recover
+                  -if(isTop)
+                    td True
+                    td
+                      a(href = canceltopposturl) Cancel                    
+                  -if(!isTop)
+                    td False
+                    td
+                      a(href = settopposturl) Set
+              
+      #footer
+        p Yifan Zuo, Shen Chen, Leilei Chen

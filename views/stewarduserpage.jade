@@ -1,0 +1,64 @@
+doctype html
+html
+  head
+    title TechBBS
+    link(href='/main.css' rel='stylesheet')
+    
+  body
+    div
+      -var foo = allrows
+      -foo = JSON.parse(foo)
+      #header  
+        a(href="/login.html")
+          button.loginbutton log out
+        p Technology BBS
+      .left
+        -var presentusername = foo[0]["presentusername"]
+        p= presentusername
+        p Steward
+        a(href="/stewarduserpage")
+          button.changebutton All Users
+        a(href="/stewardmainpage")
+          button.changebutton All Posts
+
+      .right
+        .posttable  
+          table(border=8,align="center",cellpadding="10px")
+            thead 
+              tr
+                th Id
+                th Name
+                th Valid?
+                th Operation
+                th Level
+                th Operation
+                th Operation
+            tbody
+              each elem in foo
+                tr 
+                  -var id=elem["userid"]
+                  -var name=elem["username"]
+                  -var invaliduserurl='/stewardinvaliduser?id='+id;
+                  -var recoveruserurl='/stewardrecoveruser?id='+id;
+                  -var valid=elem["valid"];
+                  -var level='Lv. '+elem["level"];
+                  -var upgradeuserurl='/upgradeuser?id='+id;
+                  -var downgradeuserurl='/downgradeuser?id='+id;
+                  td= id
+                  td= name
+                  -if(valid)
+                    td True
+                    td
+                      a(href = invaliduserurl) Block                    
+                  -if(!valid)
+                    td False
+                    td
+                      a(href = recoveruserurl) Recover
+                  td= level
+                  td
+                    a(href = upgradeuserurl) Upgrade  
+                  td
+                    a(href = downgradeuserurl) Downgrade					
+              
+      #footer
+        p Yifan Zuo, Shen Chen, Leilei Chen

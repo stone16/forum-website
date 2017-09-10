@@ -1,0 +1,29 @@
+<html>
+<head>
+<title>success</title>
+<script type="text/javascript"> 
+onload=function(){ 
+setInterval(go, 1000); 
+}; 
+var x=3; //利用了全局变量来执行 
+function go(){ 
+x--; 
+if(x>0){ 
+document.getElementById("sp").innerHTML=x; //每次设置的x的值都不一样了。 
+}else{ 
+location.href='/getallpost'; 
+} 
+} 
+</script> 
+<link rel="stylesheet" type="text/css" href="/logsign.css">
+</head>
+<body background="/technology.jpg">
+		<div class="block">
+			<p class="logo">TECH BBS</p>
+			<div class="wrongtable">
+			<p>Success!</p>
+			<p id="sp"></p>
+            </div>
+		</div>
+</body>
+</html>

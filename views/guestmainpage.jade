@@ -1,0 +1,39 @@
+doctype html
+html
+  head
+    title TechBBS
+    link(href='/main.css' rel='stylesheet')
+    
+  body
+    div
+      #header  
+        
+        a(href="/login.html")
+          button.loginbutton log in/sign up
+        p Technology BBS
+      .guest
+        .posttable  
+          table(border=8,align="center",cellpadding="10px")
+            thead 
+              tr
+                th Author
+                th Topic
+                th Posttime
+            tbody
+              -var foo = allrows
+              -foo = JSON.parse(foo)
+              -length = foo.length
+              each elem in foo
+                tr 
+                  -var author=elem["author"]
+                  -var title=elem["title"]
+                  -var time=elem["time"]
+                  -var postid=elem["postid"]
+                  -var posturl='/getpost?id='+postid;
+                  td= author
+                  td
+                    a(href = posturl)= title
+                  td= time
+              
+      #footer
+        p Yifan Zuo, Shen Chen, Leilei Chen

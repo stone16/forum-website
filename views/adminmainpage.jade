@@ -1,0 +1,58 @@
+doctype html
+html
+  head
+    title TechBBS
+    link(href='/main.css' rel='stylesheet')
+    
+  body
+    div
+      -var foo = allrows
+      -foo = JSON.parse(foo)
+      #header  
+        a(href="/login.html")
+          button.loginbutton log out
+        p Technology BBS
+      .left
+        -var presentusername = foo[0]["presentusername"]
+        p= presentusername
+        p Admin
+
+      .right
+        .posttable  
+          table(border=8,align="center",cellpadding="10px")
+            thead 
+              tr
+                th ID
+                th Name
+                th isSteward?
+                th Operation
+                th RequestToSteward?
+                th Operation
+            tbody
+              each elem in foo
+                tr 
+                  -var id=elem["userid"]
+                  -var name=elem["username"]
+                  -var issteward=elem["issteward"]
+                  -var requesttosteward=elem["requesttosteward"];
+                  -var cancelstewardurl='/cancelsteward?id='+id;
+                  -var agreestewardurl='/agreesteward?id='+id;
+                  td= id
+                  td= name
+                  -if(issteward)
+                    td True
+                    td 
+                      a(href = cancelstewardurl) Cancel
+                  -if(!issteward)
+                    td False
+                    td /
+                  -if(requesttosteward)
+                    td True
+                    td
+                      a(href = agreestewardurl) Agree                    
+                  -if(!requesttosteward)
+                    td False
+                    td /
+              
+      #footer
+        p Yifan Zuo, Shen Chen, Leilei Chen

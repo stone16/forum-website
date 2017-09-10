@@ -1,0 +1,30 @@
+//users
+function add_users(name)
+function del_users(id)
+function changename_users(id,newname)
+//user_friend
+function add_userfriend(usersId,friendId)
+function del_userfriend(usersId,friendId)
+function get_friend(userId)
+//messages
+function add_messages(senderId,receiverId,content)
+function del_messages(id)
+//guest
+function add_guests()
+function del_guests(id)
+//steward
+function add_steward(userId)
+function del_steward(id)
+//post
+function add_post(authorId,content)
+function del_post(id)
+function settop_post(id)
+function invalid_post(id)
+function get_post()
+//request
+function add_request_Registration(isApproved,guestsId,userId,stewardId)
+function add_request_FriendApp(isApproved,userId,friendId,stewardId)
+function add_request_MessageSend(isApproved,SenderId,UserId,stewardId,MessageId)
+function add_request_ApplySteward(isApproved,UserId,StewardId,AdminId)
+function add_request_Post(isApproved,UserId,StewardId,PostId)
+function del_request(id)

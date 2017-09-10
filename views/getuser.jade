@@ -1,0 +1,57 @@
+doctype html
+html
+  head
+    title TechBBS
+    link(href='/main.css' rel='stylesheet')
+    
+  body
+    div
+      #header  
+        a(href="/login.html")
+          button.loginbutton log out
+        a(href="/getallpost")
+          button.loginbutton Mainpage
+        p Technology BBS
+      .left
+        -var foo = allrows
+        -foo = JSON.parse(foo)
+        -if(foo.length===0)
+          -foo=[{author:"empty",level:"empty","userid":0}];
+        -var name=foo[0]["author"]
+        -var level='Lv.'+foo[0]["level"]
+        p= name 
+        p= level
+        -var addurl="/addfriendrequest?id="+foo[0]["userid"]
+        a(href=addurl)
+          button.changebutton Add Friend
+      .right
+        .posttable  
+          table(border=8,align="center",cellpadding="10px")
+            thead 
+              tr
+                th Topic
+                th Posttime
+            tbody
+              each elem in foo
+                tr 
+                  -var title=elem["title"]
+                  -var time=elem["time"]
+                  -var postid=elem["postid"]
+                  -var url='/getpost?id='+postid;
+                  -var userid=elem["userid"];
+                  -sendmessageurl="/sendmessage?id="+userid;
+                  td
+                    a(href = url)= title
+                  td= time
+          table(style="background-color: #F4EBC3;margin-top:100px;margin-left:20px;margin-right:20px;")
+            form(method = "post",action=sendmessageurl)
+              tr
+                td
+                  textarea(type="text",cols=35,rows=8,style="font-size:22px",name="content")
+              tr
+                td
+                  a(href=messageurl)
+                    button(type="submit",class="changebutton") Send Message
+              
+      #footer
+        p Yifan Zuo, Shen Chen, Leilei Chen

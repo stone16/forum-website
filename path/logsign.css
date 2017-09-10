@@ -1,0 +1,62 @@
+.block {
+	background-color:white;
+	border-radius: 5px;
+	margin-top:15%;
+	margin-left:25%;
+	width:55%;
+	height:50%;
+}
+
+.logo
+{
+	background-color:black;
+	color:white;
+	font-size:52px;
+	text-align:center;
+	
+}
+
+.passtable
+{
+	font-size:30px;
+	text-align:center;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.wrongtable
+{
+	font-size:30px;
+	text-align:center;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.input
+{
+	font-size:22px;
+	border-radius: 5px;
+	
+}
+
+.button
+{
+	font-size:24px;
+	border-radius: 5px;
+	width:100px;
+}
+
+.againbutton
+{
+	font-size:35px;
+	border-radius: 5px;
+	width:160px;
+}
+
+#signup
+{
+	font-size:24px;
+	border-radius: 5px;
+	width:100px;
+	margin-left:514px;
+}

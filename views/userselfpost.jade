@@ -1,0 +1,62 @@
+doctype html
+html
+  head
+    title TechBBS
+    link(href='/main.css' rel='stylesheet')
+    
+  body
+    div
+      -var foo = allrows
+      -foo = JSON.parse(foo)
+      #header  
+        a(href="/login.html")
+          button.loginbutton log out
+        a(href="/getallpost")
+          button.loginbutton Mainpage
+        p Technology BBS
+      .left
+        -var username = foo[0]["username"]
+        -var userlevel = 'Lv. '+foo[0]["userlevel"]
+        p= username
+        p= userlevel
+        a(href="/changename.html")
+          button.changebutton change name
+        a(href="/changepass.html")
+          button.changebutton change password
+        a(href="/posting.html")
+          button.changebutton Post
+        a(href="/userselfpost")
+          button.changebutton My Posts
+        a(href="/userselfmessage")
+          button.changebutton My Messages
+        a(href="/friendrequest")
+          button.changebutton Friend Requests       
+        a(href="/userfriend")
+          button.changebutton Friends 
+        a(href="/applytosteward")
+          button.changebutton Apply Steward 
+      .right
+        .posttable  
+          table(border=8,align="center",cellpadding="10px")
+            thead 
+              tr
+                th Topic
+                th Posttime
+                th Operation
+            tbody
+              each elem in foo
+                tr 
+                  -var title=elem["title"]
+                  -var time=elem["time"]
+                  -var postid=elem["postid"]
+                  -var url='/getpost?id='+postid;
+                  td
+                    a(href = url)= title
+                  td= time
+                  td 
+                    -var deleteurl='http://localhost:3000/deletepost?id='+postid;
+                    a(href=deleteurl)
+                      p Delete
+              
+      #footer
+        p Yifan Zuo, Shen Chen, Leilei Chen

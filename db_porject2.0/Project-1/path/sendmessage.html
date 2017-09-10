@@ -1,0 +1,32 @@
+<html>
+<head>
+<title>Send Message</title>
+<link rel="stylesheet" type="text/css" href="http://localhost:3000/path/posting.css">
+</head>
+<body background="http://localhost:3000/path/technology.jpg">
+		<div class="block">
+		<p class="logo">TECH BBS</p>
+		<form method = "post" action = "http://localhost:3000/sendmessage">
+		<table class="table">
+		<tr>
+		<td><p>From:</p></td>
+		<td>
+			<textarea type = "text" cols=35 rows=1 style="font-size:22px" name = "sender"></textarea>
+		</td>
+		</tr>
+		<tr>
+		<td><p>To:</p></td>
+		<td>
+			<textarea type = "text" cols=35 rows=1 style="font-size:22px" name = "receiver"></textarea>
+		</td>
+		</tr>
+		<tr>
+		<td><p>Content:</p></td>
+		<td><textarea type = "text" cols=35 rows=8 style="font-size:22px" name = "content"></textarea></td>
+		</tr>
+		</table>
+		<button type = "submit" class="postbutton">Send</button>
+		</form>
+		</div>
+</body>
+</html>

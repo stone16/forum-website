@@ -1,0 +1,27 @@
+doctype html
+html
+  head
+    title TechBBS
+    link(href='/main.css' rel='stylesheet')
+  body
+    div
+      -var foo = allrows
+      -foo = JSON.parse(foo)
+      -var title = foo[0]["title"]
+      -var content = foo[0]["content"]
+      -var name = foo[0]["name"]
+      -var level = 'Lv. '+foo[0]["level"]
+      #header  
+        a(href="/login.html")
+          button.loginbutton log out
+        a(href="/getallpost")
+          button.loginbutton Mainpage
+        p Technology BBS
+      .left
+        p= name 
+        p= level
+      .right
+        h1(style="text-align:center;")= title
+        p(style="margin-left:7%;margin-right:7%;")= content
+      #footer
+        p Yifan Zuo, Shen Chen, Leilei Chen
